@@ -22,8 +22,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Toggle("Animate", isOn: $isAnimating)
-            Toggle("Showe/Hide thumb", isOn: $hideThumb)
-            Text("Different sizes")
+            Toggle("show/hide thumb", isOn: $hideThumb)
             OSliderView(value: $sliderValue, bufferValue: $bufferValue, isAnimating: $isAnimating, hideThumb: $hideThumb, lineHeight: CGFloat(sliderHeight+15), bufferProgressColor: Color.gray.opacity(0.3))
             OSliderView(value: $sliderValue, bufferValue: $bufferValue, isAnimating: $isAnimating, hideThumb: $hideThumb, lineHeight: CGFloat(sliderHeight+10), bufferProgressColor: Color.gray.opacity(0.3))
             OSliderView(value: $sliderValue, bufferValue: $bufferValue, isAnimating: $isAnimating, hideThumb: $hideThumb, lineHeight: CGFloat(sliderHeight+5), bufferProgressColor: Color.gray.opacity(0.3))
