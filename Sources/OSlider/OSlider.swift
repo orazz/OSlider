@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 public typealias UKSlider = UISlider
 
@@ -66,6 +67,9 @@ public class OSlider: UKSlider {
     // Colors for the back animation from and to states
     public var backAnimationFromColor: UIColor = UIColor(red: 0.34, green: 0.38, blue: 0.44, alpha: 1.00)
     public var backAnimationToColor: UIColor = UIColor(red: 0.81, green: 0.84, blue: 0.88, alpha: 1.00)
+    
+    // Slider is tracking
+    public var isSliderTracking: Bool = false
     
     // MARK: - Private properties
     
@@ -249,7 +253,7 @@ extension OSlider {
     // Creates the base layer for the slider, setting initial properties
     private func createBaseLayer() {
         baseLayer.masksToBounds = true
-        baseLayer.frame = .init(x: originalSliderFrame.origin.x, y: originalSliderFrame.origin.y, width: frame.width-12, height: lineHeight)
+        baseLayer.frame = .init(x: originalSliderFrame.origin.x, y: originalSliderFrame.origin.y, width: frame.width-6, height: lineHeight)
         baseLayer.cornerRadius = cornerRadius
         layer.insertSublayer(baseLayer, at: 0)
     }
@@ -279,7 +283,7 @@ extension OSlider {
     private func updateProgressAnimation(isAnimating: Bool) {
         if isAnimating {
             CATransaction.begin()
-                CATransaction.setDisableActions(true)
+            CATransaction.setDisableActions(true)
             backgroundColorAnimation.fromValue = backAnimationFromColor.cgColor
             backgroundColorAnimation.toValue = backAnimationToColor.cgColor
             baseLayer.add(backgroundColorAnimation, forKey: Config.backgroundColorAnimationKey)
